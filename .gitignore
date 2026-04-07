@@ -3,4 +3,3 @@ __pycache__/
 .pytest_cache/
 .hypothesis/
 *.pyc
-eda_outputs/
