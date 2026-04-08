@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "name": "Sync Structure Docs",
+  "description": "When source files, tests, or config files are created or deleted, updates README.md and .kiro/steering/structure.md to reflect the current project structure",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": [
+      "src/**",
+      "tests/**",
+      "*.py",
+      "*.toml",
+      "*.yaml",
+      "*.yml"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A file was just created or deleted in the project. Review the current project structure and update two things:\n1. The root README.md — reflect the new file/folder layout in any structure section it has\n2. .kiro/steering/structure.md — keep the directory tree and conventions accurate\n\nOnly update what changed. Don't rewrite sections unrelated to structure."
+  }
+}
