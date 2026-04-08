@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Activate Virtual Environment",
+  "description": "Activa el entorno virtual de Python (venv) antes de ejecutar cualquier comando de shell en una tarea",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": [
+      "shell"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before running any shell command, ensure the virtual environment is activated by prefixing the command with `venv/Scripts/activate;` if it's not already activated. If the command already references venv/Scripts/python.exe or venv/Scripts/activate, skip this. Apply this to the current shell command."
+  }
+}

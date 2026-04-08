@@ -1,0 +1,52 @@
+[project]
+name = "heart-disease-prediction"
+version = "0.1.0"
+description = "Kaggle Playground Series S6E2 - Heart Disease Prediction"
+requires-python = ">=3.9"
+dependencies = [
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "xgboost",
+    "lightgbm",
+    "matplotlib",
+    "seaborn",
+    "scipy",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "pre-commit",
+    "ruff",
+    "interrogate",
+    "hypothesis",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "W",   # pycodestyle warnings
+    "D",   # pydocstyle
+]
+ignore = [
+    "D203",  # one-blank-line-before-class
+    "D213",  # multi-line-summary-second-line
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.interrogate]
+ignore-init-method = true
+ignore-init-module = false
+fail-under = 95
+verbose = 1

@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Pre-commit Check and Auto Commit",
+  "description": "Al terminar una tarea, pasa pre-commit, verifica docstrings con interrogate, comprueba que no hay imports fuera del top del archivo, corrige errores de ruff y hace commit si todo está OK",
+  "version": "1",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A task has just completed. Follow these steps in order using the venv environment (prefix commands with `venv/Scripts/activate;`):\n\n1. Run `venv/Scripts/activate; ruff check . --fix` to auto-fix ruff errors. If unfixable errors remain, report them and stop.\n2. Run `venv/Scripts/activate; ruff check .` to confirm no remaining ruff errors. If errors remain, fix them manually in the code before continuing.\n3. Run `venv/Scripts/activate; interrogate src/` to check docstring coverage. If it fails (below 95%), add missing docstrings to the reported functions/classes before continuing.\n4. Check that no Python files have import statements outside the top of the file (after module docstring and __future__ imports). If any are found, move them to the top of the file.\n5. Run `venv/Scripts/activate; pre-commit run --all-files` to run all pre-commit hooks. Fix any issues reported.\n6. Once all checks pass, stage all changes with `git add -A` and commit with a short descriptive message summarizing the task completed.\n\nIf any step fails and cannot be auto-fixed, report the issue clearly and do not proceed to commit."
+  }
+}
