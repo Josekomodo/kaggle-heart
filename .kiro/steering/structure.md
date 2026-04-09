@@ -1,11 +1,28 @@
 # Project Structure
 
 ```
-playground-series-s6e2/
-├── train.csv              # Training data with target column `Heart Disease`
-├── test.csv               # Test data (no target); IDs from 630000–633330
-├── sample_submission.csv  # Expected submission format: id, Heart Disease (probability)
-└── README.md              # Competition description, features, and modeling notes
+.
+├── playground-series-s6e2/     # Competition data
+│   ├── train.csv               # Training data with target
+│   ├── test.csv                # Test data (IDs 630000–633330)
+│   ├── sample_submission.csv   # Submission format
+│   └── README.md               # Competition description
+├── src/
+│   ├── __init__.py
+│   └── eda.py                  # EDA pipeline
+├── tests/
+│   ├── conftest.py
+│   └── test_eda.py             # Unit & property-based tests
+├── output/
+│   └── eda/                    # Generated EDA artifacts
+│       ├── *.png               # Visualizations
+│       └── conclusions.md      # EDA summary
+├── .kiro/
+│   ├── hooks/                  # Automation hooks
+│   └── steering/               # Project guidelines
+├── pyproject.toml              # Dependencies & tooling config
+├── .pre-commit-config.yaml     # Pre-commit hooks
+└── README.md
 ```
 
 ## Conventions

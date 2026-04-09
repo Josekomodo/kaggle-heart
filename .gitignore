@@ -5,3 +5,4 @@ __pycache__/
 .hypothesis/
 *.pyc
 .ruff_cache
+slides
