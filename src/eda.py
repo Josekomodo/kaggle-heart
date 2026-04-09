@@ -16,7 +16,7 @@ from sklearn.model_selection import cross_val_score
 
 TRAIN_PATH = "playground-series-s6e2/train.csv"
 TEST_PATH = "playground-series-s6e2/test.csv"
-OUTPUT_DIR = "eda_outputs"
+OUTPUT_DIR = "output/eda"
 RANDOM_STATE = 42
 
 COL_RENAME = {
@@ -625,3 +625,26 @@ def compute_feature_importance(train_df: pd.DataFrame) -> dict:
     plt.close(fig)
 
     return {"importances": importances, "cv_roc_auc_mean": cv_roc_auc_mean, "cv_roc_auc_std": cv_roc_auc_std}
+
+
+def run_eda_pipeline():
+    """Execute the complete EDA pipeline and save all outputs."""
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    train_df, test_df = load_and_validate(TRAIN_PATH, TEST_PATH)
+    analyze_target(train_df)
+    analyze_numeric_features(train_df)
+    analyze_categorical_features(train_df)
+    analyze_correlations(train_df)
+    analyze_train_test_distribution(train_df, test_df)
+    analyze_outliers(train_df)
+    analyze_interactions(train_df)
+    compute_feature_importance(train_df)
+
+    print(f"\n{'=' * 60}")
+    print(f"EDA complete! All outputs saved to: {OUTPUT_DIR}")
+    print(f"{'=' * 60}")
+
+
+if __name__ == "__main__":
+    run_eda_pipeline()
